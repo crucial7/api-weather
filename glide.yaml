@@ -1,0 +1,6 @@
+package: github.com/crucial7/api-weather
+import:
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: gopkg.in/jarcoal/httpmock.v1
