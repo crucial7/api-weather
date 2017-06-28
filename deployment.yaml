@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: api-weather
+    name: api-weather
+    type: web
+  name: api-weather
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-weather
+      name: api-weather
+      type: web
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: api-weather
+        name: api-weather
+        type: web
+      name: api-weather
+    spec:
+      containers:
+      - image: sheriff/api-weather:1.0.{{build.number}}
+        imagePullPolicy: IfNotPresent
+        name: api-weather
+        ports:
+        - containerPort: 80
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: quayregistrykey
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

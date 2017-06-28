@@ -83,7 +83,7 @@ func WeatherByLatLongAndDate(w http.ResponseWriter, req *http.Request) {
 	var forecast []WeatherByLatLongAndDateResponse
 	w.Header().Set("Content-Type", "application/json")
 
-	for i := 0; i < 7; i++ {
+	for i := 0; i < 8; i++ {
 
 		temp := tm.AddDate(0, 0, -i)
 
